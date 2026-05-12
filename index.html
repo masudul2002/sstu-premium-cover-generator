@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSTU Premium Cover Generator</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- LIBRARIES -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- CUSTOM STYLES -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- =====================================
+         EDIT PANEL
+    ===================================== -->
+    <div class="panel">
+        <h2>Premium Cover Generator</h2>
+
+        <div class="form-group">
+            <label>Theme Color</label>
+            <select id="theme">
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+                <option value="purple">Purple</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>University Name</label>
+            <input id="university" value="Sunamgonj Science and Technology University">
+        </div>
+
+        <div class="form-group">
+            <label>Department</label>
+            <input id="department" value="Department of Computer Science and Engineering">
+        </div>
+
+        <div class="form-group">
+            <label>Faculty</label>
+            <input id="faculty" value="Faculty of Engineering and Technology">
+        </div>
+
+        <div class="form-group">
+            <label>Semester & Year</label>
+            <input id="semester" value="1st Year: 2nd">
+        </div>
+
+        <div class="form-group">
+            <label>Session</label>
+            <input id="session" value="2023-24">
+        </div>
+
+        <div class="form-group">
+            <label>Degree</label>
+            <input id="degree" value="B.Sc. Engg. in CSE">
+        </div>
+
+        <div class="form-group">
+            <label>Assignment Title</label>
+            <textarea id="assignment">Design and Implementation of Modern Web Systems using CSS and JavaScript APIs</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Course Title</label>
+            <input id="course" value="Software Engineering">
+        </div>
+
+        <div class="form-group">
+            <label>Course Code</label>
+            <input id="code" value="CSE-2201">
+        </div>
+
+        <div class="form-group">
+            <label>Student Name</label>
+            <input id="student" value="Md. Ashraful Islam">
+        </div>
+
+        <div class="form-group">
+            <label>Student Semester</label>
+            <input id="studentSemester" value="1st">
+        </div>
+
+        <div class="form-group">
+            <label>Student Year</label>
+            <input id="studentYear" value="2nd">
+        </div>
+
+        <div class="form-group">
+            <label>Student Session</label>
+            <input id="studentSession" value="2023-24">
+        </div>
+
+        <div class="form-group">
+            <label>Student ID</label>
+            <input id="studentId" value="232401001">
+        </div>
+
+        <div class="form-group">
+            <label>Department Name</label>
+            <input id="studentDepartment" value="Department of Computer Science and Engineering">
+        </div>
+
+        <div class="form-group">
+            <label>Teacher Name</label>
+            <input id="teacher" value="Dr. Mostafizur Rahman">
+        </div>
+
+        <div class="form-group">
+            <label>Designation</label>
+            <input id="designation" value="Associate Professor">
+        </div>
+
+        <div class="form-group">
+            <label>Date of Submission</label>
+            <input id="submissionDate">
+        </div>
+
+        <div class="form-group">
+            <label>University Logo</label>
+            <input type="file" id="logoInput" accept="image/*">
+        </div>
+
+        <button onclick="downloadPDF()">Generate & Download PDF</button>
+    </div>
+
+    <!-- =====================================
+         LIVE PREVIEW
+    ===================================== -->
+    <div class="preview-wrapper">
+        <div id="a4-page">
+            <!-- Watermark -->
+            <img id="watermarkLogo" class="watermark">
+
+            <div class="content">
+                <!-- Header Logo -->
+                <img id="logoPreview" class="logo">
+
+                <!-- University Info -->
+                <div class="uni" id="pUniversity"></div>
+                <div class="dept" id="pDepartment"></div>
+                <div class="faculty" id="pFaculty"></div>
+                <div class="top-info" id="pTopInfo"></div>
+
+                <div class="space-top"></div>
+
+                <!-- Course Info -->
+                <div class="info-section">
+                    <div>
+                        <span class="label">Assignment Title</span> : 
+                        <span id="pAssignment"></span>
+                    </div>
+                    <div>
+                        <span class="label">Course Title</span> : 
+                        <span id="pCourse"></span>
+                    </div>
+                    <div>
+                        <span class="label">Course Code</span> : 
+                        <span id="pCode"></span>
+                    </div>
+                </div>
+
+                <!-- Submission Table -->
+                <table class="submit-box">
+                    <tr class="submit-head">
+                        <td>Submitted By</td>
+                        <td>Submitted To</td>
+                    </tr>
+                    <tr class="submit-body">
+                        <td>
+                            <div class="table-line">
+                                Name: <span class="bold" id="pStudent"></span>
+                            </div>
+                            <div class="table-line">
+                                Semester: <span class="bold" id="pStudentSemester"></span>&nbsp;&nbsp;
+                                Year: <span class="bold" id="pStudentYear"></span>
+                            </div>
+                            <div class="table-line">
+                                Session: <span id="pStudentSession"></span>
+                            </div>
+                            <div class="table-line">
+                                Student ID: <span id="pStudentId"></span>
+                            </div>
+                            <div class="department-text" id="pStudentDepartment"></div>
+
+                            <!-- QR Generator -->
+                            <div id="qr-wrapper">
+                                <div id="qrcode"></div>
+                                <div class="qr-text">Scan For Verification</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="table-line">
+                                Name of Course Teacher: <span class="bold" id="pTeacher"></span>
+                            </div>
+                            <div class="table-line">
+                                Designation: <span id="pDesignation"></span>
+                            </div>
+                            <div class="signature">
+                                Signature....................................
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Submission Date -->
+                <div class="red">
+                    Date of Submission: <span id="pSubmissionDate"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SCRIPTS -->
+<script src="script.js"></script>
+
+</body>
+</html>
