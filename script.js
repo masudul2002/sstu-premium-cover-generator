@@ -214,6 +214,7 @@ function applyTheme(color){
 function loadData(){
 
     ids.forEach(id=>{
+        if (id === 'submissionDate') return; // Skip loading from localStorage to ensure it always defaults to today's date
         const value = localStorage.getItem(id);
         const el = document.getElementById(id);
         if(value && el){
