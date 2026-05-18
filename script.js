@@ -232,8 +232,8 @@ function loadData(){
     const logoPreview = document.getElementById('logoPreview');
     const watermarkLogo = document.getElementById('watermarkLogo');
     
-    if(logoPreview) logoPreview.src = 'SSTU_LOGO.jpg';
-    if(watermarkLogo) watermarkLogo.src = 'SSTU_LOGO.jpg';
+    if(logoPreview) logoPreview.src = 'assets/SSTU_LOGO.jpg';
+    if(watermarkLogo) watermarkLogo.src = 'assets/SSTU_LOGO.jpg';
 
     updatePreview();
 }
@@ -378,3 +378,30 @@ function adjustScale() {
 }
 
 window.addEventListener("resize", adjustScale);
+
+/* =====================================
+   MOBILE TAB SWITCHER
+===================================== */
+
+function setTab(tab) {
+    const wrapper = document.querySelector('.wrapper');
+    const btnEdit = document.getElementById('btn-edit');
+    const btnPreview = document.getElementById('btn-preview');
+    
+    if(!wrapper || !btnEdit || !btnPreview) return;
+    
+    if (tab === 'edit') {
+        wrapper.classList.remove('show-preview');
+        wrapper.classList.add('show-edit');
+        btnEdit.classList.add('active');
+        btnPreview.classList.remove('active');
+    } else {
+        wrapper.classList.remove('show-edit');
+        wrapper.classList.add('show-preview');
+        btnPreview.classList.add('active');
+        btnEdit.classList.remove('active');
+        
+        /* Force layout scaling update when turning on the preview tab */
+        setTimeout(adjustScale, 50);
+    }
+}

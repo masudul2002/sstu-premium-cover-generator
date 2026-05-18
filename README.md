@@ -2,6 +2,10 @@
 
 A fully responsive, premium web application to generate professional assignment/lab cover pages tailored for **Sunamgonj Science and Technology University** (or adaptable to any institution).
 
+<p align="center">
+  <img src="assets/SSTU-Cover-Page.png" alt="SSTU Premium Cover Page Generator Preview" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
+</p>
+
 ### 🚀 Key Features
 - ✨ **Live Dynamic Preview:** Watch your changes instantly as you type.
 - 🎯 **Precise A4 Dimensioning:** Optimized single-page constraint ensures design zero-breakage.
