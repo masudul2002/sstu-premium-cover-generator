@@ -125,11 +125,6 @@
             <input id="submissionDate">
         </div>
 
-        <div class="form-group">
-            <label>University Logo</label>
-            <input type="file" id="logoInput" accept="image/*">
-        </div>
-
         <button onclick="downloadPDF()">Generate & Download PDF</button>
     </div>
 
@@ -139,11 +134,11 @@
     <div class="preview-wrapper">
         <div id="a4-page">
             <!-- Watermark -->
-            <img id="watermarkLogo" class="watermark">
+            <img id="watermarkLogo" class="watermark" src="SSTU_LOGO.jpg">
 
             <div class="content">
                 <!-- Header Logo -->
-                <img id="logoPreview" class="logo">
+                <img id="logoPreview" class="logo" src="SSTU_LOGO.jpg">
 
                 <!-- University Info -->
                 <div class="uni" id="pUniversity"></div>

@@ -228,14 +228,11 @@ function loadData(){
         applyTheme(savedTheme);
     }
 
-    const logo = localStorage.getItem('logo');
     const logoPreview = document.getElementById('logoPreview');
     const watermarkLogo = document.getElementById('watermarkLogo');
     
-    if(logo){
-        if(logoPreview) logoPreview.src = logo;
-        if(watermarkLogo) watermarkLogo.src = logo;
-    }
+    if(logoPreview) logoPreview.src = 'SSTU_LOGO.jpg';
+    if(watermarkLogo) watermarkLogo.src = 'SSTU_LOGO.jpg';
 
     updatePreview();
 }
@@ -257,27 +254,6 @@ document.addEventListener("DOMContentLoaded", () => {
         themeSelect.addEventListener('change', function(){
             applyTheme(this.value);
             saveData();
-        });
-    }
-
-    const logoInput = document.getElementById('logoInput');
-    if(logoInput) {
-        logoInput.addEventListener('change', function(e){
-            const file = e.target.files[0];
-            if(!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(event){
-                const img = event.target.result;
-                const logoPreview = document.getElementById('logoPreview');
-                const watermarkLogo = document.getElementById('watermarkLogo');
-                
-                if(logoPreview) logoPreview.src = img;
-                if(watermarkLogo) watermarkLogo.src = img;
-                
-                localStorage.setItem('logo', img);
-            };
-            reader.readAsDataURL(file);
         });
     }
     
